@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="colorBackgroundSearch">#EDEDF7</color>
+    <color name="iconBackgroudn">#EDEDF7</color>
+    <color name="background_color">#ffffff</color>
+
+    <color name="text_color">#b1b1b9</color>
+    <color name="text_color_small">#9393b9</color>
+
+    <color name="icon_active">#2186eb</color>
+    <color name="icon_disable">#9393b9</color>
+</resources>

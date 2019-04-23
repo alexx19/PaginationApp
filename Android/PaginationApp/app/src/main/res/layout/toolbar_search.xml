@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        tools:ignore="MissingConstraints">
+
+
+
+        <RelativeLayout
+            android:id="@+id/search_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBackgroundSearch"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="22dp"
+                android:drawableRight="@drawable/ic_search_black_24dp"
+                android:gravity="left|center"
+                android:hint="Lugares cerca de mi"
+                android:padding="10dp"
+                android:textColor="@color/text_color"
+                android:background="@color/background_color"
+                android:textColorHint="@android:color/darker_gray" />
+        </RelativeLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+</android.support.constraint.ConstraintLayout>
