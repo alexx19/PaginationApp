@@ -1,6 +1,7 @@
 package com.aurriola.pagination.app.engine;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collections;
 
 import dagger.Module;
@@ -10,6 +11,7 @@ import okhttp3.ConnectionSpec;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Protocol;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.TlsVersion;

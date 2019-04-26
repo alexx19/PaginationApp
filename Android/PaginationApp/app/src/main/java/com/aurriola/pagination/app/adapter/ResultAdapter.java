@@ -2,6 +2,7 @@ package com.aurriola.pagination.app.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 
 import com.aurriola.pagination.app.R;
 import com.aurriola.pagination.app.engine.ModelResult;
+import com.aurriola.pagination.app.engine.PicassoTrustAll;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -37,8 +40,7 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.PersonView
     public void onBindViewHolder(@NonNull PersonViewHolder holder, int i){
         holder.txtTitle.setText(modelResults.get(i).getTilte());
         holder.txtDetail.setText(modelResults.get(i).getDescription());
-
-        Picasso.get().load(modelResults.get(i).getUrl_img()).placeholder(R.drawable.ic_picture_default).into(holder.img_profile);
+        PicassoTrustAll.getInstance(holder.itemView.getContext()).load(modelResults.get(i).getUrl_img()).into(holder.img_profile);
     }
 
     public int getItemCount()

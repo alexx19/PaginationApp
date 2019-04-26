@@ -31,7 +31,8 @@ ext {
     interceptorVersion = '3.11.0'
     rxjavaVersion = '2.2.0'
     rxAndroidVersion = '2.1.0'
-    picassoVersion = '2.71828'
+    picassoVersion = '2.4.0'
+    picassoHttpVersion = '2.2.0'
 }
 
 dependencies {
@@ -75,6 +76,13 @@ dependencies {
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
 
     //Libreria para busqueda de imagenes
+    //implementation "com.squareup.picasso:picasso:$picassoVersion"
+    //implementation 'com.squareup.okhttp:okhttp-urlconnection:2.2.0'
+    //implementation 'com.squareup.okhttp:okhttp:2.2.0'
+
+
+    implementation "com.squareup.okhttp:okhttp:$picassoHttpVersion"
+    implementation "com.squareup.okhttp:okhttp-urlconnection:$picassoHttpVersion"
     implementation "com.squareup.picasso:picasso:$picassoVersion"
 
 }
