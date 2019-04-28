@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.aurriola.pagination.app.R;
+import com.aurriola.pagination.app.adapter.DividerItemDecoration;
 import com.aurriola.pagination.app.adapter.ResultAdapter;
 import com.aurriola.pagination.app.engine.ModelResult;
 import com.aurriola.pagination.app.root.App;
@@ -82,11 +83,13 @@ public class SearchFragment extends Fragment implements SearchMVP.View{
 
         resultAdapter = new ResultAdapter(modelResults);
         recycle_list_person.setAdapter(resultAdapter);
-        recycle_list_person.setItemAnimator(new DefaultItemAnimator());
-
 
         //todas las celdas de igual tamanano
         recycle_list_person.setHasFixedSize(true);
+ 
+        recycle_list_person.setItemAnimator(new DefaultItemAnimator());
+        recycle_list_person.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL, 16));
+
 
         setUpLoadMoreListener();
     }
