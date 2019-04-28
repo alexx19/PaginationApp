@@ -17,6 +17,7 @@ public interface SearchMVP {
     {
         void startLoading();
         void stopLoading();
+        void loading(boolean status);
         void dialogError(String msg);
         void updateDate(ModelResult modelResult);
     }
@@ -30,6 +31,7 @@ public interface SearchMVP {
         void setView(SearchMVP.View view);
         void findPerson(String personName);
         void loadLogin(int pagination);
+        void setPageNumber(int pageNumber);
     }
 
     /**

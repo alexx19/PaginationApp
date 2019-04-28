@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 
@@ -34,12 +35,12 @@ public class SearchRepository implements Repository {
             public Observable<Result> apply(PersonResponse personResponse) throws Exception {
                 return Observable.fromIterable(personResponse.getResults());
             }
-        }).doOnNext(new Consumer<Result>() {
+        })/*.doOnNext(new Consumer<Result>() {
             @Override
             public void accept(Result result) throws Exception {
                 results.add(result);
             }
-        });
+        })*/;
     }
 
     @Override

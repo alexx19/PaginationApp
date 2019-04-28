@@ -43,6 +43,12 @@ public class SearchFragment extends Fragment implements SearchMVP.View{
     private ResultAdapter resultAdapter;
     private List<ModelResult> modelResults = new ArrayList<>();
 
+
+    private int lastVisibleItem, totalItemCount;
+    private final int VISIBLE_THRESHOLD = 1;
+    private int pageNumer = 1;
+    private boolean loading = false;
+
     public SearchFragment()
     {
 
@@ -73,14 +79,40 @@ public class SearchFragment extends Fragment implements SearchMVP.View{
         //todas las celdas de igual tamanano
         recycle_list_person.setHasFixedSize(true);
         recycle_list_person.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
+        setUpLoadMoreListener();
         return view;
+    }
+
+    private void setUpLoadMoreListener() {
+        recycle_list_person.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@android.support.annotation.NonNull RecyclerView recyclerView, int dx, int scrollDown) {
+                super.onScrolled(recyclerView, dx, scrollDown);
+
+
+                Log.d(TAG,"scrollDown "+scrollDown);
+                if (!loading && totalItemCount <=(lastVisibleItem + VISIBLE_THRESHOLD))
+                {
+                    pageNumer++;
+                    fPresenter.setPageNumber(pageNumer);
+                    loading = true;
+                }
+                /*if (scrollDown > 0) {
+                    Log.d(TAG,"scrollDown");
+                    fPresenter.loadLogin(2);
+                }
+                */
+            }
+        });
     }
 
     public void onResume()
     {
         super.onResume();
         fPresenter.setView(this);
-        fPresenter.loadLogin(1);
+        fPresenter.loadLogin(pageNumer);
         //fPresenter.start();
     }
     public void onStop()
@@ -116,6 +148,12 @@ public class SearchFragment extends Fragment implements SearchMVP.View{
     @Override
     public void stopLoading() {
         progressDialog.dismiss();
+    }
+
+    @Override
+    public void loading(boolean status) {
+        Log.d(TAG,"Status ===> "+status);
+        loading = status;
     }
 
     @Override

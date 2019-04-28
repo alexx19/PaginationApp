@@ -23,8 +23,8 @@ public class SearchPersonActivity extends AppCompatActivity {
     @BindView(R.id.nav_view)
     BottomNavigationView navView;
 
-    @Inject
-    SearchMVP.Presenter aPresenter;
+    //@Inject
+    //SearchMVP.Presenter aPresenter;
 
 
 
@@ -64,7 +64,7 @@ public class SearchPersonActivity extends AppCompatActivity {
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navView.setSelectedItemId(R.id.navigation_home);
 
-        ((App)getApplication()).getComponent().searchActivityInject(this);
+        //((App)getApplication()).getComponent().searchActivityInject(this);
 
 
     }
