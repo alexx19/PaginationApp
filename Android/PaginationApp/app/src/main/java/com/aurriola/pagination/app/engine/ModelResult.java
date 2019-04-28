@@ -37,4 +37,9 @@ public class ModelResult {
     public void setUrl_img(String url_img) {
         this.url_img = url_img;
     }
+
+    @Override
+    public String toString() {
+        return "tilte='" + tilte  + ", description='" + description +'\'';
+    }
 }

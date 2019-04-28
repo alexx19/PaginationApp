@@ -7,10 +7,13 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.aurriola.pagination.app.R;
 import com.aurriola.pagination.app.adapter.DividerItemDecoration;
@@ -28,13 +31,15 @@ import butterknife.ButterKnife;
 import io.reactivex.annotations.NonNull;
 
 
-
-public class SearchFragment extends Fragment implements SearchMVP.View{
+public class SearchFragment extends Fragment implements SearchMVP.View, TextWatcher {
 
     private String TAG = "SearchFragment";
 
     @BindView(R.id.recycle_list_person)
     RecyclerView recycle_list_person;
+    @BindView(R.id.edtx_search)
+    EditText edtx_search;
+
     private LinearLayoutManager mLayoutManager;
 
     @Inject
@@ -88,13 +93,19 @@ public class SearchFragment extends Fragment implements SearchMVP.View{
         recycle_list_person.setHasFixedSize(true);
  
         recycle_list_person.setItemAnimator(new DefaultItemAnimator());
-        recycle_list_person.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL, 16));
+        recycle_list_person.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL, 8));
+
+        //Evento para detectar lo que el usuario esta escribiendo.
+        edtx_search.addTextChangedListener(this);
 
 
         setUpLoadMoreListener();
     }
 
 
+    /**
+     * Método  para realizar la siguiente busqueda por pagina.
+     */
     private void setUpLoadMoreListener() {
         recycle_list_person.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -147,7 +158,6 @@ public class SearchFragment extends Fragment implements SearchMVP.View{
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setCancelable(false);
-        //progressDialog.setTitle("Buscando...");
         progressDialog.setMessage("Buscando...");
         progressDialog.show();
     }
@@ -177,5 +187,23 @@ public class SearchFragment extends Fragment implements SearchMVP.View{
     @Override
     public void setPresenter(@NonNull SearchMVP.Presenter presenter) {
         fPresenter = presenter;
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        Log.d(TAG,"onTextChanged() "+charSequence.toString().trim());
+        resultAdapter.getFilter().filter(charSequence.toString().trim());
+
+        //control para realizar la siguiente busqueda por pagina.
+        loading = !edtx_search.getText().toString().trim().equals("");
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
     }
 }

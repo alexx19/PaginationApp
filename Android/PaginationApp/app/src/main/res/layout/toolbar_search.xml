@@ -21,6 +21,7 @@
             android:padding="@dimen/activity_horizontal_margin">
 
             <EditText
+                android:id="@+id/edtx_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="22dp"
@@ -28,6 +29,8 @@
                 android:gravity="left|center"
                 android:hint="Personas cerca de mi"
                 android:padding="10dp"
+                android:singleLine="true"
+                android:imeOptions="actionSearch"
                 android:textColor="@color/text_color"
                 android:background="@color/background_color"
                 android:textColorHint="@android:color/darker_gray" />
