@@ -40,4 +40,8 @@ public class Name {
         this.title = title;
     }
 
+    @Override
+    public String toString() {
+        return  first.substring(0,1).toUpperCase() + first.substring(1).toLowerCase() + " " + last.substring(0,1).toUpperCase() + last.substring(1).toLowerCase() ;
+    }
 }

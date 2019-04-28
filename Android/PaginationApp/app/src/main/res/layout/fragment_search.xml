@@ -15,10 +15,23 @@
         android:iconifiedByDefault="false"
         />
 
+    <TextView
+        android:id="@+id/txtTitleResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/news_title"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:padding="8dp"
+        android:text="Personas cercanas a ti"
+        android:textSize="20sp"
+        android:textColor="@color/text_title"
+        android:textStyle="bold" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycle_list_person"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/news_title"
+        android:layout_below="@+id/txtTitleResult"
         tools:listitem="@layout/row_result_item" />
 </RelativeLayout>

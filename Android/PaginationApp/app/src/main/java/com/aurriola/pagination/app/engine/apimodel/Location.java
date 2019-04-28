@@ -73,4 +73,8 @@ public class Location {
         this.timezone = timezone;
     }
 
+    @Override
+    public String toString() {
+        return city.substring(0,1).toUpperCase() + city.substring(1).toLowerCase() + ", " + state.substring(0,1).toUpperCase() + state.substring(1).toLowerCase();
+    }
 }

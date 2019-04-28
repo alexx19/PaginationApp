@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.aurriola.pagination.app.engine.Repository;
 import com.aurriola.pagination.app.engine.ModelResult;
+import com.aurriola.pagination.app.engine.apimodel.Name;
 import com.aurriola.pagination.app.engine.apimodel.Result;
 
 import io.reactivex.Observable;
@@ -26,7 +27,7 @@ public class SearchModel implements SearchMVP.Model {
       return   repository.getPersona(pagination).flatMap(new Function<Result, Observable<ModelResult>>() {
           @Override
           public Observable<ModelResult> apply(Result result) throws Exception {
-              return Observable.just(new ModelResult(result.getName().getFirst(), result.getEmail(), result.getPicture().getMedium()));
+              return Observable.just(new ModelResult(result.getName().toString().trim(), result.getLocation().toString().trim(), result.getPicture().getMedium()));
           }
       });
     }
