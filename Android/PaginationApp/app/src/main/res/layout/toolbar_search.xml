@@ -27,7 +27,7 @@
                 android:drawablePadding="22dp"
                 android:drawableRight="@drawable/ic_search_black_24dp"
                 android:gravity="left|center"
-                android:hint="Personas cerca de mi"
+                android:hint="@string/near_me"
                 android:padding="10dp"
                 android:singleLine="true"
                 android:imeOptions="actionSearch"

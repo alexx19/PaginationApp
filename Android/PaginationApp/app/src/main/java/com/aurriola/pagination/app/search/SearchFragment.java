@@ -158,7 +158,7 @@ public class SearchFragment extends Fragment implements SearchMVP.View, TextWatc
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setCancelable(false);
-        progressDialog.setMessage("Buscando...");
+        progressDialog.setMessage(getString(R.string.wait));
         progressDialog.show();
     }
 
