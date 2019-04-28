@@ -69,7 +69,8 @@ public class SearchPresenter implements SearchMVP.Presenter {
                     public void onError(Throwable e) {
                         e.printStackTrace();
                         if (view != null) {
-                            view.dialogError("Error al descargar las peliculas.");
+                            view.stopLoading();
+                            view.dialogError("Error al descargar las peliculas!!!...");
                         }
                     }
 
@@ -77,7 +78,8 @@ public class SearchPresenter implements SearchMVP.Presenter {
                     public void onComplete() {
                         if (view!=null)
                         {
-                            view.dialogError("Informacion descargada con exito.");
+                            view.stopLoading();
+                            view.dialogError("Informacion descargada con exito!!!...");
                             Log.d(TAG, "onComplete() >>> false");
                             view.loading(false);
                         }
@@ -85,44 +87,6 @@ public class SearchPresenter implements SearchMVP.Presenter {
                 });
 
     }
-
-
-    /*@Override
-    public void loadLogin(int pagination) {
-        subscription = model.result(pagination)
-                .subscribeOn(Schedulers.io())//hilo en el segundo plano, para buscar los datos a una API o DB.
-                .observeOn(AndroidSchedulers.mainThread())//Notifica a la vista en el hilo principal; al obtener la respuesta.
-        //Se utiliza subscribeWith, para hacer la dessudscripcion
-        .subscribeWith(new DisposableObserver<ModelResult>() {
-                           @Override
-                           public void onNext(ModelResult modelResult) {
-                               if (view!=null)
-                               {
-                                   view.updateDate(modelResult);
-                               }
-                           }
-
-                           @Override
-                           public void onError(Throwable e) {
-                               e.printStackTrace();
-                               if (view != null) {
-                                   view.dialogError("Error al descargar las peliculas.");
-                               }
-                           }
-
-                           @Override
-                           public void onComplete() {
-                               if (view!=null)
-                               {
-                                   view.dialogError("Informacion descargada con exito.");
-                                   Log.d(TAG, "onComplete >>> false");
-                                   view.loading(false);
-                               }
-                           }
-                       });
-
-        publishProcessor.onNext(pagination);
-    }*/
 
 
     @Override
@@ -133,6 +97,9 @@ public class SearchPresenter implements SearchMVP.Presenter {
     public void setPageNumber(int pageNumber)
     {
         Log.d(TAG," setPageNumber "+pageNumber);
+        if (view!=null)
+            view.startLoading();
+
         loadLogin(pageNumber);
     }
 }

@@ -117,7 +117,7 @@ public class SearchFragment extends Fragment implements SearchMVP.View{
     {
         super.onResume();
         fPresenter.setView(this);
-        fPresenter.loadLogin(pageNumer);
+        fPresenter.setPageNumber(pageNumer);
     }
     public void onStop()
     {
@@ -144,8 +144,8 @@ public class SearchFragment extends Fragment implements SearchMVP.View{
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setCancelable(false);
-        progressDialog.setTitle("Buscando...");
-        //progressDialog.setMessage(getResources().getString(R.string.dialog_details));
+        //progressDialog.setTitle("Buscando...");
+        progressDialog.setMessage("Buscando...");
         progressDialog.show();
     }
 
