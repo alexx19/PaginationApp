@@ -31,9 +31,4 @@ public class SearchModule {
     {
         return new SearchRepository(apiService);
     }
-
-    /*public SearchMVP.View provideView(SearchMVP.View view)
-    {
-        return new SearchFragment(view);
-    }*/
 }

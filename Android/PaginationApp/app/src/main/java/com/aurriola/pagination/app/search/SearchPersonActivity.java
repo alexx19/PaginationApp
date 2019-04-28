@@ -12,9 +12,6 @@ import android.widget.TextView;
 
 import com.aurriola.pagination.app.R;
 import com.aurriola.pagination.app.engine.ActivityUtils;
-import com.aurriola.pagination.app.root.App;
-
-import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -64,14 +61,6 @@ public class SearchPersonActivity extends AppCompatActivity {
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navView.setSelectedItemId(R.id.navigation_home);
 
-        //((App)getApplication()).getComponent().searchActivityInject(this);
-
-
     }
 
-    /*private void replaceFragment(Fragment fragment) {
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.contentFrame, fragment);
-        fragmentTransaction.commit();
-    }*/
 }

@@ -78,7 +78,7 @@ public class SearchPresenter implements SearchMVP.Presenter {
                         if (view!=null)
                         {
                             view.dialogError("Informacion descargada con exito.");
-                            Log.d(TAG, "onComplete >>> false");
+                            Log.d(TAG, "onComplete() >>> false");
                             view.loading(false);
                         }
                     }
@@ -132,8 +132,7 @@ public class SearchPresenter implements SearchMVP.Presenter {
 
     public void setPageNumber(int pageNumber)
     {
-        Log.d(TAG,">>>> "+pageNumber);
-       // publishProcessor.onNext(pageNumber);
+        Log.d(TAG," setPageNumber "+pageNumber);
         loadLogin(pageNumber);
     }
 }

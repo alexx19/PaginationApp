@@ -34,6 +34,7 @@ public class SearchFragment extends Fragment implements SearchMVP.View{
 
     @BindView(R.id.recycle_list_person)
     RecyclerView recycle_list_person;
+    private LinearLayoutManager mLayoutManager;
 
     @Inject
     SearchMVP.Presenter fPresenter;
@@ -44,8 +45,7 @@ public class SearchFragment extends Fragment implements SearchMVP.View{
     private List<ModelResult> modelResults = new ArrayList<>();
 
 
-    private int lastVisibleItem, totalItemCount;
-    private final int VISIBLE_THRESHOLD = 1;
+    private final int VISIBLE_THRESHOLD = 10;
     private int pageNumer = 1;
     private boolean loading = false;
 
@@ -72,38 +72,43 @@ public class SearchFragment extends Fragment implements SearchMVP.View{
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         ButterKnife.bind(this, view);
         ((App)getActivity().getApplication()).getComponent().searchfragment(this);
+        return view;
+    }
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mLayoutManager = new LinearLayoutManager(getActivity());
+        recycle_list_person.setLayoutManager(mLayoutManager);
 
         resultAdapter = new ResultAdapter(modelResults);
         recycle_list_person.setAdapter(resultAdapter);
         recycle_list_person.setItemAnimator(new DefaultItemAnimator());
+
+
         //todas las celdas de igual tamanano
         recycle_list_person.setHasFixedSize(true);
-        recycle_list_person.setLayoutManager(new LinearLayoutManager(getActivity()));
-
 
         setUpLoadMoreListener();
-        return view;
     }
+
 
     private void setUpLoadMoreListener() {
         recycle_list_person.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@android.support.annotation.NonNull RecyclerView recyclerView, int dx, int scrollDown) {
                 super.onScrolled(recyclerView, dx, scrollDown);
-
-
-                Log.d(TAG,"scrollDown "+scrollDown);
-                if (!loading && totalItemCount <=(lastVisibleItem + VISIBLE_THRESHOLD))
-                {
-                    pageNumer++;
-                    fPresenter.setPageNumber(pageNumer);
-                    loading = true;
+                int visibleItemCount = mLayoutManager.getChildCount();
+                int totalItemCount = mLayoutManager.getItemCount();
+                int firstVisibleItemPosition = mLayoutManager.findFirstVisibleItemPosition();
+                if (!loading) {
+                    Log.d(TAG, "("+visibleItemCount+"+"+firstVisibleItemPosition+") >= "+totalItemCount+" && "+firstVisibleItemPosition+">= 0 && "+totalItemCount + " >= "+VISIBLE_THRESHOLD);
+                    if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount && firstVisibleItemPosition >= 0 && totalItemCount >= VISIBLE_THRESHOLD) {
+                        pageNumer++;
+                        fPresenter.setPageNumber(pageNumer);
+                        loading = true;
+                    }
                 }
-                /*if (scrollDown > 0) {
-                    Log.d(TAG,"scrollDown");
-                    fPresenter.loadLogin(2);
-                }
-                */
+
             }
         });
     }
@@ -113,7 +118,6 @@ public class SearchFragment extends Fragment implements SearchMVP.View{
         super.onResume();
         fPresenter.setView(this);
         fPresenter.loadLogin(pageNumer);
-        //fPresenter.start();
     }
     public void onStop()
     {
@@ -152,16 +156,13 @@ public class SearchFragment extends Fragment implements SearchMVP.View{
 
     @Override
     public void loading(boolean status) {
-        Log.d(TAG,"Status ===> "+status);
+        Log.d(TAG,"loading ===> "+status);
         loading = status;
     }
 
     @Override
     public void dialogError(String msg) {
         Log.e(TAG,msg);
-       /* Snackbar snackbar = Snackbar.make(rootView, msg, Snackbar.LENGTH_SHORT);
-        View snackBarView = snackbar.getView();
-        snackbar.show();*/
     }
 
     @Override

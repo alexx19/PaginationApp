@@ -26,7 +26,6 @@ public class SearchModel implements SearchMVP.Model {
       return   repository.getPersona(pagination).flatMap(new Function<Result, Observable<ModelResult>>() {
           @Override
           public Observable<ModelResult> apply(Result result) throws Exception {
-              Log.d(TAG, result.getName().getFirst());
               return Observable.just(new ModelResult(result.getName().getFirst(), result.getEmail(), result.getPicture().getMedium()));
           }
       });
