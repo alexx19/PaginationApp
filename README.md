@@ -8,7 +8,7 @@ MVP+dagger+rxjava
 
 
 ## Recursos
-### Imagenes
+### Imágenes
    * **search icon:**<div>Icons made by <a href="https://www.flaticon.com/authors/icon-works" title="Icon Works">Icon Works</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
    * **home icon:**<div>Icons made by <a href="https://www.flaticon.com/authors/icon-works" title="Icon Works">Icon Works</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
    * **profile:**<div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
@@ -27,7 +27,7 @@ MVP+dagger+rxjava
   * [PicassoTrustAll-http-https](https://stackoverflow.com/questions/49793979/picasso-does-not-load-some-url-included-http-or-https)
   * [Reactivex](http://reactivex.io/documentation/observable.html)
   
-### Librerias
+### Librerías
   * [Dagger](https://google.github.io/dagger/)
   * [Retrofit](https://square.github.io/retrofit/)
   * [Butterknife](http://jakewharton.github.io/butterknife/)
